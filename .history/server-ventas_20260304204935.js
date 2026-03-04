@@ -532,7 +532,7 @@ app.use((err, req, res, next) => {
   });
 });
 
-const PORT = process.env.PORT || 3060;
+const PORT = process.env.PORT_VENTAS || 3060;
 app.listen(PORT, () => {
   console.log(`✅ API Ventas/Pagos ejecutándose en http://localhost:${PORT}`);
   console.log(`Estado de conexión: ${connectionStatus}`);
