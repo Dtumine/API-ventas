@@ -144,7 +144,7 @@ app.post('/api/ventas', async (req, res) => {
   try {
     const { id_cliente, id_auto, fecha_venta, total, id_empleado, anulada } = req.body;
 
-    if (!id_cliente || !id_auto || !fecha_venta || !total || !id_empleado) {
+    if (!id_cliente || !id_auto || !fecha_venta || !precio || !id_empleado) {
       return res.status(400).json({
         status: 'error',
         message: 'Faltan campos obligatorios: id_cliente, id_auto, fecha_venta, precio, id_empleado'
@@ -154,15 +154,14 @@ app.post('/api/ventas', async (req, res) => {
     const { data, error } = await supabase
       .from('ventas')
       .insert([
-  {
-    id_cliente,
-    id_auto,
-    fecha_venta,
-    total,
-    id_empleado,
-    anulada
-  }
-])
+        {
+          id_cliente,
+          id_auto,
+          fecha_venta,
+          precio,
+          id_empleado
+        }
+      ])
       .select();
 
     if (error) {
